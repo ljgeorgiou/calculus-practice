@@ -145,31 +145,6 @@ new_point = old_point - (learning_rate × gradient)
 
 Starting at `[5, 5]`, my code finds the bottom at `[1, 2]`.
 
-## Why this is how AI models learn
-
-An AI model is a big set of numbers, called weights. When you give the model an input, it uses its weights to make a guess. At the start the weights are random, so the guesses are bad.
-
-To improve, we measure how wrong the guesses are with a single number called the error (also called the loss). The error depends on the weights: change the weights, and the error changes. So the error is a function of the weights, just like `f(x)` is a function of `x`.
-
-For example, say a model guesses `y = w × x`, and for `x = 2` the right answer is `6`. Its error could be measured as:
-
-```
-error = (2w - 6)²
-```
-
-That's the same bowl shape as my examples, with its bottom at `w = 3`. Finding the best weight means finding the bottom of the error bowl, which is exactly what gradient descent does.
-
-A real model works the same way, just much bigger. It has millions (or billions) of weights instead of one, so the gradient is a list of millions of numbers, one for each weight. Training the model means:
-
-1. Make a guess and measure the error.
-2. Work out the gradient of the error for every weight.
-3. Nudge every weight a small step against its gradient, so the error goes down.
-4. Repeat, millions of times.
-
-That loop is what people mean when they say a model is "learning". My two-input code is the same idea, just with 2 numbers instead of millions.
-
-One difference: my code estimates each gradient by nudging one input at a time. With millions of weights, that would mean running the model millions of extra times for every single step, which is far too slow. Real AI libraries use the chain rule instead (this is called backpropagation), which works out the gradient for every weight in one go, by going backwards through the layers. So the chain rule is what makes gradient descent fast enough to train real models.
-
 ## Running it
 
 You need Python 3.9 or newer. There's nothing to install.
@@ -178,3 +153,7 @@ You need Python 3.9 or newer. There's nothing to install.
 python gradient_descent.py
 python gradient_descent_two_inputs.py
 ```
+
+## Blog post
+
+- [How AI learns: gradient descent explained simply](https://dev.to/ljgeorgiou/how-ai-learns-gradient-descent-explained-simply-26gk) - the bowl, the compass and gradient descent, explained step by step
